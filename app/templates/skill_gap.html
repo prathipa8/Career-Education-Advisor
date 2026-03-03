@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="page-shell skillgap-shell p-4 p-md-5">
+  <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+    <div>
+      <p class="eyebrow mb-1">Capability Mapping</p>
+      <h2 class="fw-bold mb-1">Skill Gap Analysis — {{ career }}</h2>
+      <p class="mb-0 text-secondary">Compare expected competencies with your current skill inventory.</p>
+    </div>
+    <span class="pill-badge">Step 3 of 5</span>
+  </div>
+
+  <div class="row g-3">
+    <div class="col-md-4">
+      <div class="comparison-card h-100">
+        <h5>Required Skills</h5>
+        <ul>
+          {% for skill in required_skills %}
+            <li>{{ skill }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="comparison-card h-100">
+        <h5>Your Skills</h5>
+        <ul>
+          {% for skill in user_skills %}
+            <li>{{ skill }}</li>
+          {% else %}
+            <li>No skills entered.</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="comparison-card highlight-card h-100">
+        <h5>Missing Skills</h5>
+        <ul>
+          {% for skill in missing_skills %}
+            <li>{{ skill }}</li>
+          {% else %}
+            <li>Great! No critical gap identified.</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-between mt-4">
+    <a href="{{ url_for('main.recommendation') }}" class="btn btn-outline-primary">Back to Recommendation</a>
+    <a href="{{ url_for('main.suggestions') }}" class="btn btn-primary">View Course & Internship Suggestions</a>
+  </div>
+</div>
+{% endblock %}
