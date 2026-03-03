@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="page-shell profile-shell p-4 p-md-5">
+  <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+    <div>
+      <p class="eyebrow mb-1">Student Onboarding</p>
+      <h1 class="display-6 fw-bold mb-2">Build Your Academic & Career Profile</h1>
+      <p class="mb-0 text-secondary">Tell us about your strengths so our advisor can generate personalized career intelligence.</p>
+    </div>
+    <span class="pill-badge">Step 1 of 5</span>
+  </div>
+
+  <form method="post" class="row g-3">
+    <div class="col-md-6">
+      <label class="form-label">Name</label>
+      <input type="text" class="form-control" name="name" required>
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">Department</label>
+      <input type="text" class="form-control" name="department" required>
+    </div>
+    <div class="col-md-4">
+      <label class="form-label">CGPA</label>
+      <input type="number" class="form-control" name="cgpa" min="0" max="10" step="0.01" required>
+    </div>
+    <div class="col-md-8">
+      <label class="form-label">Career Preference (Optional)</label>
+      <select class="form-select" name="career_preference">
+        <option value="">No specific preference</option>
+        {% for career in career_options %}
+          <option value="{{ career }}">{{ career }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="col-12">
+      <label class="form-label">Skills (comma separated)</label>
+      <input type="text" class="form-control" name="skills" placeholder="e.g., Python, SQL, Tableau" required>
+    </div>
+    <div class="col-12">
+      <label class="form-label">Interests</label>
+      <textarea class="form-control" name="interests" rows="3" placeholder="e.g., I enjoy solving real-world business problems using data" required></textarea>
+    </div>
+    <div class="col-12 d-flex justify-content-end">
+      <button type="submit" class="btn btn-primary px-4">Generate Recommendation</button>
+    </div>
+  </form>
+</section>
+{% endblock %}

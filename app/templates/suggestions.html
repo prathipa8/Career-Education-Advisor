@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="page-shell suggestions-shell p-4 p-md-5">
+  <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+    <div>
+      <p class="eyebrow mb-1">Learning Recommendations</p>
+      <h2 class="fw-bold mb-1">Course + Internship Suggestions for {{ career }}</h2>
+      <p class="mb-0 text-secondary">Curated upskilling tracks based on your specific missing competencies.</p>
+    </div>
+    <span class="pill-badge">Step 4 of 5</span>
+  </div>
+
+  <p class="mb-3"><strong>Priority skill gaps:</strong> {{ missing_skills | join(', ') if missing_skills else 'None identified' }}</p>
+
+  <div class="row g-3">
+    <div class="col-md-6">
+      <div class="comparison-card h-100"><h5>Coursera</h5><ul>{% for item in suggestions.coursera %}<li>{{ item }}</li>{% endfor %}</ul></div>
+    </div>
+    <div class="col-md-6">
+      <div class="comparison-card h-100"><h5>NPTEL</h5><ul>{% for item in suggestions.nptel %}<li>{{ item }}</li>{% endfor %}</ul></div>
+    </div>
+    <div class="col-md-6">
+      <div class="comparison-card h-100"><h5>YouTube Learning Topics</h5><ul>{% for item in suggestions.youtube %}<li>{{ item }}</li>{% endfor %}</ul></div>
+    </div>
+    <div class="col-md-6">
+      <div class="comparison-card h-100 highlight-card"><h5>Internship Domains</h5><ul>{% for item in suggestions.internships %}<li>{{ item }}</li>{% endfor %}</ul></div>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-between mt-4">
+    <a href="{{ url_for('main.skill_gap') }}" class="btn btn-outline-primary">Back to Skill Gap</a>
+    <a href="{{ url_for('main.roadmap') }}" class="btn btn-primary">Generate Learning Roadmap</a>
+  </div>
+</div>
+{% endblock %}
